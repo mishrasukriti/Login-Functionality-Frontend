@@ -1,4 +1,4 @@
-let url = "http://localhost:3000"
+let url = "https://password-reset-functionality.herokuapp.com"
 
 function onLogIn() {
     let email = document.getElementById("logInEmailId").value;
