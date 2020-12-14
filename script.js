@@ -22,19 +22,16 @@ function onLogIn() {
             if(data.message === "Login success"){
                 alertDiv.setAttribute("class","alert alert-success" );
                 alertDiv.innerHTML = "<strong> Login Success! </strong>" ;
-                console.log("User Logged in Successfully");
                 deleteAlert(alertDiv);
             }
             else if(data.message === "Password Incorrect"){
                 alertDiv.setAttribute("class","alert alert-danger" );
                 alertDiv.innerHTML = "<strong>Incorrect Password!</strong>" ;
-                console.log("Password Incorrect");
                 deleteAlert(alertDiv);
             }
             else {
                 alertDiv.setAttribute("class","alert alert-danger" );
                 alertDiv.innerHTML = "<strong>User is not registered!</strong>" ;
-                console.log("User is not registered");
                 deleteAlert(alertDiv);
             }
             document.getElementById("login-form").append(alertDiv);
@@ -51,7 +48,6 @@ function onSignUp() {
     // Write password and repeat password matching logic
     let passwordMismatchDiv = document.getElementById("passwordMismatchDiv");
     if(password!== reEnterPassword) {
-        console.log("came under password matching");
         passwordMismatchDiv.classList.remove("d-none");
         return;
     }
@@ -76,13 +72,11 @@ function onSignUp() {
             if(data.message === "User registered successfully"){
                 alertDiv.setAttribute("class","alert alert-success" );
                 alertDiv.innerHTML = "<strong> Success! </strong>" + data.message;
-                console.log("User Registered Successfully");
                 deleteAlert(alertDiv);
             }
             if(data.message === "User already exists"){
                 alertDiv.setAttribute("class","alert alert-danger" );
                 alertDiv.innerHTML = "<strong>Failure!</strong>" + data.message;
-                console.log("User already Registered ");
                 deleteAlert(alertDiv);
             }
             document.getElementById("sign-up-form").append(alertDiv);
@@ -110,17 +104,15 @@ function sendPasswordResetLink(){
             alertDiv.setAttribute("id","alertDiv" );
             if(data.message === "Verification mail is sent"){
                 alertDiv.setAttribute("class","alert alert-success" );
-                alertDiv.innerHTML = "<strong> Success! </strong>" + data.message + "Please check your email";
-                console.log("User Registered Successfully");
+                alertDiv.innerHTML = "<strong> Success! </strong>" + data.message + "<p> Please check your email </p>";
                 deleteAlert(alertDiv);
             }
             if(data.message === "User doesn't exist"){
                 alertDiv.setAttribute("class","alert alert-danger" );
                 alertDiv.innerHTML = "<strong>Failure!</strong>" + data.message;
-                console.log("User already Registered ");
                 deleteAlert(alertDiv);
             }
-            document.body.append(alertDiv);
+            document.getElementById("login-space").append(alertDiv);
             
             
         })
@@ -128,10 +120,8 @@ function sendPasswordResetLink(){
 }
 
 function changePassword() {
-    console.log("changing password inside function");
     let currentLocation = new URL(window.location.href);
     let objId = JSON.stringify(currentLocation).split("&rs=")[0].split("?id=")[1];
-    console.log("inside change password function: objectId is:" +   objId);
 
     let newPassword = document.getElementById('newPassword').value;
     let reconfirmedPassword = document.getElementById('reEnterPassword').value;
@@ -163,13 +153,11 @@ function changePassword() {
             if(data.message === "Password Updated Successfully"){
                 alertDiv.setAttribute("class","alert alert-success" );
                 alertDiv.innerHTML = "<strong> Success! </strong>" + data.message;
-                console.log("Password Updated Successfully");
                 deleteAlert(alertDiv);
             }
             else {
                 alertDiv.setAttribute("class","alert alert-danger" );
                 alertDiv.innerHTML = "<strong>Failure!</strong>" + data.message;
-                console.log("Error in changing the password");
                 deleteAlert(alertDiv);
             }
             document.getElementById('changePasswordDiv').append(alertDiv);
